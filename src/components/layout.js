@@ -1,28 +1,12 @@
 import * as React from 'react'
-import { Link, graphql, useStaticQuery } from 'gatsby'
-import { MDXRenderer } from 'gatsby-plugin-mdx'
-import {
-
-} from './layout.module.css'
+import { Link } from 'gatsby'
+import '../styles/layout.css'
+import BookBtn from './book'
 
 const Layout = ({ children }) => {
 
-  const data = useStaticQuery(graphql`
-    query Info {
-      allMdx {
-        nodes {
-          frontmatter {
-            title
-            tags
-          }
-          body
-        }
-      }
-    }
-  `)
-
   return (
-    <main>
+    <div className='layout'>
       <header>
         <nav>
           <Link to='/services'>Services</Link>
@@ -33,8 +17,9 @@ const Layout = ({ children }) => {
         <div className='logo'>
           <Link to='/'>Logo Here</Link>
         </div>
-        <div>
-          socials here
+        <div className='socials'>
+          <p>socials here</p>
+          <BookBtn />
         </div>
       </header>
 
@@ -52,25 +37,17 @@ const Layout = ({ children }) => {
           <Link to='/gallery'>Gallery</Link>
           <Link to='/contact'>Contact</Link>
         </nav>
-
-        {
-          data.allMdx.nodes.forEach(node => {
-            if (node.frontmatter.tags === "footer") {
-              return (
-                <div key={node.frontmatter.title}>
-                <h2>{node.frontmatter.title}</h2>
-                <MDXRenderer>
-                  {node.body}
-                </MDXRenderer>
-                </div>
-              )
-            }
-
-          })
-        }
-
+        <div className='footerInfo'>
+          <h2>Hours</h2>
+          <p>Mon-Fri: 1200-500PM</p>
+        </div>
+        <div className='footerInfo'>
+          <h2>Location</h2>
+          <p>San Diego, CA 92115</p>
+        </div>
+        <BookBtn />
       </footer>
-    </main>
+    </div>
   )
 }
 

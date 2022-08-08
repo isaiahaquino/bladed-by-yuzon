@@ -1,0 +1,8 @@
+@import '../vars.css';
+
+.bookBtn {
+  background-color: var(--color-green);
+  color: var(--color-black);
+  font-weight: 600;
+  padding: 1.5rem 1.5rem;
+}
